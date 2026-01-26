@@ -1,0 +1,15 @@
+option(
+  'openmp',
+  type: 'feature',
+  value: 'auto',
+  description: 'Enable OpenMP support',
+)
+
+option('tests', type: 'feature', value: 'enabled', description: 'Build unit tests')
+
+option(
+  'docs',
+  type: 'feature',
+  value: 'auto',
+  description: 'Build Doxygen documentation',
+)

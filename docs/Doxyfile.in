@@ -1,0 +1,15 @@
+PROJECT_NAME           = "@PROJECT_NAME@"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
+
+OUTPUT_DIRECTORY       = "@BUILD_DIR@/docs"
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+INPUT                  = "@SRC_DIR@/include" "@SRC_DIR@/src"
+RECURSIVE              = YES
+
+EXTRACT_ALL            = YES
+QUIET                  = YES
+
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES

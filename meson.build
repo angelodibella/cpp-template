@@ -1,46 +1,20 @@
 project(
   'template',
   'cpp',
+  version: '0.1.0',
   meson_version: '>= 1.3.0',
-  version: '0.1',
-  default_options: ['warning_level=3', 'cpp_std=c++23'],
+  default_options: [
+    'cpp_std=c++23',
+    'warning_level=3',
+    'buildtype=debug',
+    'b_ndebug=if-release',
+  ],
 )
 
-inc = include_directories(include)
+template_inc = include_directories('include')
 
-### Project Library ###
+openmp_dep = dependency('openmp')
 
-libtemplate = library(
-  'libtemplate',
-  'src/template/*.cpp',
-  include_directories: inc,
-)
-
-libtemplate_dep = declare_dependency(
-  link_with: libtemplate,
-  include_directories: inc,
-)
-
-sources = [
-  'template.cpp',
-]
-
-### Executables ###
-
-exe = executable(
-  'template',
-  sources,
-  include_directories: inc,
-  dependencies: dependencies,
-)
-
-### Tests ###
-
-test_exe = executable(
-  'test',
-  [],
-  include_directories: inc,
-  dependencies: [dependency(doctest)],
-)
-
-test('basic', test_exe)
+subdir('src')
+subdir('tests')
+subdir('docs')
