@@ -15,7 +15,7 @@ template_inc = include_directories('include')
 
 openmp_dep = dependency('openmp')
 
-# Build library first
+# Build library
 subdir('src/template')
 
 # Example executable: src/main.cpp
