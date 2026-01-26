@@ -15,6 +15,28 @@ template_inc = include_directories('include')
 
 openmp_dep = dependency('openmp')
 
-subdir('src')
+# Build library first
+subdir('src/template')
+
+# Example executable: src/main.cpp
+executable(
+  'template',
+  'src/main.cpp',
+  dependencies: [template_dep],
+)
+
+# If you have internal modules:
+#
+# subdir('foo')  # builds something like foo_dep
+#
+#
+# Then executables can depend on both:
+#
+# executable(
+#   'template2',
+#   'other_main.cpp',
+#   dependencies: [template_dep, foo_dep],
+# )
+
 subdir('tests')
 subdir('docs')

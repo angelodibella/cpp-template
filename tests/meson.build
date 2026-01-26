@@ -6,7 +6,7 @@ doctest_dep = dependency(
 
 test_exe = executable(
   'template_tests',
-  'test_template.cpp',
+  ['main.cpp', 'test_template.cpp'],
   dependencies: [template_dep, doctest_dep],
 )
 
