@@ -2,7 +2,7 @@ MESON ?= meson
 
 CONFIG ?= debug                      # debug | release | debugoptimized | plain | minsiz
 BUILD_ROOT ?= build
-BUILD_DIR := $(BUILD_ROOT)/$(CONFIG)
+BUILD_DIR := $(strip $(BUILD_ROOT)/$(CONFIG))
 
 MESON_ARGS ?=
 EXE ?= template
@@ -22,7 +22,7 @@ test: build
 	$(MESON) test -C $(BUILD_DIR) --print-errorlogs
 
 run: build
-	./$(BUILD_DIR)/src/$(EXE) $(ARGS)
+	./$(BUILD_DIR)/$(EXE) $(ARGS)
 
 docs: setup
 	$(MESON) compile -C $(BUILD_DIR) docs
