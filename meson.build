@@ -6,20 +6,41 @@ project(
   default_options: ['warning_level=3', 'cpp_std=c++23'],
 )
 
-dependencies = []
+inc = include_directories(include)
+
+### Project Library ###
+
+libtemplate = library(
+  'libtemplate',
+  'src/template/*.cpp',
+  include_directories: inc,
+)
+
+libtemplate_dep = declare_dependency(
+  link_with: libtemplate,
+  include_directories: inc,
+)
 
 sources = [
   'template.cpp',
 ]
 
-inc = include_directories(include)
+### Executables ###
 
 exe = executable(
   'template',
   sources,
   include_directories: inc,
   dependencies: dependencies,
-  install: true,
 )
 
-test('basic', exe)
+### Tests ###
+
+test_exe = executable(
+  'test',
+  [],
+  include_directories: inc,
+  dependencies: [dependency(doctest)],
+)
+
+test('basic', test_exe)

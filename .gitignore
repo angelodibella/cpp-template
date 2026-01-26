@@ -1,0 +1,7 @@
+build/
+
+subprojects/*
+!subprojects/*.wrap
+
+**/.cache/
+**/.cache
