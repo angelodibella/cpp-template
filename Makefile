@@ -7,10 +7,11 @@ BUILD_DIR := $(strip $(BUILD_ROOT)/$(CONFIG))
 MESON_ARGS ?=
 EXE ?= template
 
-.PHONY: setup reconfigure build test run docs clean wipe status
+.PHONY: setup reconfigure build test run docs clean wipe status tidy tidy-fix
 
 setup:
 	$(MESON) setup $(BUILD_DIR) --buildtype=$(CONFIG) $(MESON_ARGS)
+	ninja -C "$(BUILD_DIR)" clang-format
 
 reconfigure:
 	$(MESON) setup --reconfigure $(BUILD_DIR) --buildtype=$(CONFIG) $(MESON_ARGS)
@@ -35,3 +36,9 @@ wipe:
 
 status:
 	$(MESON) configure $(BUILD_DIR)
+
+tidy: setup
+	ninja -C "$(BUILD_DIR)" clang-tidy
+
+tidy-fix: setup
+	ninja -C "$(BUILD_DIR)" clang-tidy-fix

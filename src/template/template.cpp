@@ -1,5 +1,5 @@
 #include <template/template.hpp>
 
 namespace template_ {
-int add(int a, int b) { return a + b; }
+auto add(int a, int b) -> int { return a + b; }
 }  // namespace template_
