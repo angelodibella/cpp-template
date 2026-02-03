@@ -1,0 +1,5 @@
+CompileFlags:
+  # TODO: Fix: This can be build/release?
+  CompilationDatabase: build/debug
+Index:
+  Background: Build
